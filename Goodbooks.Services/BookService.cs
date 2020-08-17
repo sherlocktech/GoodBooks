@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace GoodBooks.Services
 {
-    public class BooksService : IBooksService
+    public class BookService : IBookService
     {
         private readonly GoodBooksDbContext _db;
 
-        public BooksService(GoodBooksDbContext dbContext)
+        public BookService(GoodBooksDbContext dbContext)
         {
             _db = dbContext;
         }
