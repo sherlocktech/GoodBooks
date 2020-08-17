@@ -1,4 +1,5 @@
 using GoodBooks.Data;
+using GoodBooks.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace GoodBooks.Web
                 options.EnableDetailedErrors();
                 options.UseNpgsql(Configuration.GetConnectionString("goodbooks.dev"));
             });
+
+            services.AddTransient<IBooksService, BooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +39,12 @@ namespace GoodBooks.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
 
             app.UseHttpsRedirection();
 

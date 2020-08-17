@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Goodbooks.Data\GoodBooks.Data.csproj" />
+    <ProjectReference Include="..\Goodbooks.Services\GoodBooks.Services.csproj" />
   </ItemGroup>
 
 
