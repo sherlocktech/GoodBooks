@@ -27,6 +27,7 @@ namespace GoodBooks.Services
             if (bookToDelete != null)
             {
                 _db.Remove(bookToDelete);
+                _db.SaveChanges();
             }
             else
             {

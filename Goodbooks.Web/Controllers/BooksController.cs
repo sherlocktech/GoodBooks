@@ -7,6 +7,7 @@ using System;
 
 namespace GoodBooks.Web.Controllers
 {
+    [Route("/api/[controller]/")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -19,7 +20,7 @@ namespace GoodBooks.Web.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("/api/books/")]
+        [HttpGet]
         public ActionResult GetBooks()
         {
             var books = _bookService.GetAllBooks();
@@ -27,7 +28,15 @@ namespace GoodBooks.Web.Controllers
             return Ok(books);
         }
 
-        [HttpPost("/api/books/")]
+        [HttpGet("{id}")]
+        public ActionResult GetBookById(int id)
+        {
+            var book = _bookService.GetBook(id);
+
+            return Ok(book);
+        }
+
+        [HttpPost]
         public ActionResult CreateBook([FromBody] NewBookRequest bookRequest)
         {
             var now = DateTime.UtcNow;
@@ -42,6 +51,14 @@ namespace GoodBooks.Web.Controllers
             _bookService.AddBook(book);
 
             return Ok($"Book created: {book.Title}");
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteBook(int id)
+        {
+            _bookService.DeleteBook(id);
+
+            return Ok($"Book under id {id} deleted.");
         }
     }
 }
