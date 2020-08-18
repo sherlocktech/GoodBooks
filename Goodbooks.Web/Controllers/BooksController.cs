@@ -29,7 +29,7 @@ namespace GoodBooks.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetBookById(int id)
+        public ActionResult GetBook(int id)
         {
             var book = _bookService.GetBook(id);
 
