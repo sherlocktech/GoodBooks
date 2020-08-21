@@ -41,8 +41,6 @@ namespace GoodBooks.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseCors(builder => builder
